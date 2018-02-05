@@ -37,7 +37,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Наименование" Binding="{Binding Path=Name,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" MinWidth="50"/>
-                <DataGridTextColumn Header="Комментарий" Binding="{Binding Path=Man.Name,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" MinWidth="50" MaxWidth="50"/>
+                <DataGridTextColumn Header="Комментарий" Binding="{Binding Path=Info,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" MinWidth="50" MaxWidth="175"/>
                 <DataGridTextColumn Header="Категория" Binding="{Binding Path=Category,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" MinWidth="50"/>
                 <DataGridTextColumn Header="Подкатегория" Binding="{Binding Path=Subcategory,Mode=TwoWay}" MinWidth="50"/>
 
