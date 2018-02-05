@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="DbWindows.ItemsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DbWindows"
+             mc:Ignorable="d" 
+             Background="White"
+             x:Name="CurrentControl"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <local:Base64ToImage x:Key="ImageConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MaxHeight="40"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" MaxHeight="40">
+            <Image Source="{Binding Path=CurrentProject.IconBase64,Mode=OneTime,ElementName=CurrentControl,Converter={StaticResource ImageConverter}}">
+                <Image.Height>
+                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualHeight"/>
+                </Image.Height>
+            </Image>
+            <TextBlock Text="{Binding Path=CurrentProject.Name,Mode=OneTime,ElementName=CurrentControl}" VerticalAlignment="Center" FontSize="18"/>
+        </StackPanel>
+        <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+        <DataGrid x:Name="ItemGrid" AutoGenerateColumns="False" CanUserAddRows="True" Grid.Row="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Код" Binding="{Binding Path=Id,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" MinWidth="50"/>
+                <DataGridTemplateColumn Header="Логотип" MinWidth="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <local:ImageControl Source="{Binding Path=LogoBase64, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Path=Name,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" MinWidth="50"/>
+                <DataGridTextColumn Header="Комментарий" Binding="{Binding Path=Man.Name,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" MinWidth="50" MaxWidth="50"/>
+                <DataGridTextColumn Header="Категория" Binding="{Binding Path=Category,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" MinWidth="50"/>
+                <DataGridTextColumn Header="Подкатегория" Binding="{Binding Path=Subcategory,Mode=TwoWay}" MinWidth="50"/>
+
+                <DataGridTemplateColumn Header="Производитель" MinWidth="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <local:ManufacturerControl Current="{Binding Path=Man,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price,Mode=TwoWay}" MinWidth="50"/>
+                <DataGridTextColumn Header="Доставка" Binding="{Binding Path=Delivery,Mode=TwoWay}" MinWidth="50"/>
+                <DataGridTextColumn Header="Оценка" Binding="{Binding Path=Rate,Mode=TwoWay}" MinWidth="50"/>
+
+                <DataGridTemplateColumn Header="Изображения" MinWidth="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <local:ImagesControl Id="{Binding Path=Id, Mode=OneWay}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Ссылки" MinWidth="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <local:LinksControl Id="{Binding Path=Id,Mode=OneWay}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Свойства" MinWidth="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <local:OptionsControl Id="{Binding Path=Id,Mode=OneWay}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

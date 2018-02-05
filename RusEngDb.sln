@@ -11,8 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbServerManagementStudio", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonSerTest", "JsonSerTest\JsonSerTest.csproj", "{7C87495A-3E83-4E0B-9FE8-03A771E45D9F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbWindows", "DbWindows\DbWindows.csproj", "{9E973579-3B34-4CB7-B68B-9E0F7F803B5F}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		DbElems\DbElems.projitems*{9e973579-3b34-4cb7-b68b-9e0f7f803b5f}*SharedItemsImports = 4
 		DbElems\DbElems.projitems*{a2e2b96f-b610-4a01-8f30-2ecac31acee3}*SharedItemsImports = 13
 		DbElems\DbElems.projitems*{b7685d5f-3770-44e6-bfea-18dd25b5e0c6}*SharedItemsImports = 4
 	EndGlobalSection
@@ -33,6 +36,10 @@ Global
 		{7C87495A-3E83-4E0B-9FE8-03A771E45D9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C87495A-3E83-4E0B-9FE8-03A771E45D9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C87495A-3E83-4E0B-9FE8-03A771E45D9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E973579-3B34-4CB7-B68B-9E0F7F803B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E973579-3B34-4CB7-B68B-9E0F7F803B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E973579-3B34-4CB7-B68B-9E0F7F803B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E973579-3B34-4CB7-B68B-9E0F7F803B5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

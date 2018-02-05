@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -9,7 +11,7 @@ using System.Text;
 namespace DbElems
 {
     [DataContract]
-    public class Project
+    public class Project : INotifyPropertyChanged
     {
         public static readonly string SharedProjectReservedGuid="00000000-0000-0000-0000-000000000000";
 
@@ -28,8 +30,20 @@ namespace DbElems
             }
         }
 
+        int id;
         [Key]
-        public int Id { get; set; }
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Id"));
+            }
+        }
 
         [Index(IsUnique = true)]
         [DataMember]
@@ -48,14 +62,51 @@ namespace DbElems
             }
         }
 
+        string name;
         [DataMember]
-        public string Name { get; set; }
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+            }
+        }
 
+        string info;
         [DataMember]
-        public string Info { get; set; }
+        public string Info
+        {
+            get
+            {
+                return info;
+            }
+            set
+            {
+                info = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Info"));
+            }
+        }
 
+        byte[] icon;
         [DataMember]
-        public byte[] Icon { get; set; }
+        public byte[] Icon
+        {
+            get
+            {
+                return icon;
+            }
+            set
+            {
+                icon = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Icon"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IconBase64"));
+            }
+        }
 
         [NotMapped]
         public string IconBase64
@@ -69,13 +120,15 @@ namespace DbElems
             {
                 if (value == null) Icon = new byte[0];
                 else Icon = Convert.FromBase64String(value);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Icon"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IconBase64"));
             }
         }
 
 
-        List<Item> items = new List<Item>();
+        ObservableCollection<Item> items = new ObservableCollection<Item>();
         [DataMember]
-        public List<Item> Items
+        public ObservableCollection<Item> Items
         {
             get
             {
@@ -85,8 +138,9 @@ namespace DbElems
             {
                 items = value;
             }
-        } 
+        }
 
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public void SetSharedProject()
         {
@@ -101,6 +155,5 @@ namespace DbElems
             }
             while (GUID.ToString() == SharedProjectReservedGuid);
         }
-
     }
 }

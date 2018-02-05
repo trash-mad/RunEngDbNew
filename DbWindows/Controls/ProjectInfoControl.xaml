@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="DbWindows.ProjectInfoControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DbWindows"
+             mc:Ignorable="d" 
+             Background="White"
+             x:Name="CurrentWindow"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" MinHeight="50"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Текущий проект" FontWeight="Bold" Grid.Row="0"/>
+            <Rectangle Height="7" Fill="Transparent" Grid.Row="1"/>
+            <TextBlock Text="Логотип" Grid.Row="2"/>
+            <local:ImageControl x:Name="ProjLogo" Source="{Binding ElementName=CurrentWindow,Path=Project.IconBase64,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3"/>
+            <Rectangle Height="7" Fill="Transparent" Grid.Row="4"/>
+            <TextBlock Text="Название" Grid.Row="5"/>
+            <TextBox x:Name="ProjName" Text="{Binding ElementName=CurrentWindow,Path=Project.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="6"/>
+            <Rectangle Height="7" Fill="Transparent" Grid.Row="7"/>
+            <TextBlock Text="Комментарий" Grid.Row="8"/>
+            <TextBox x:Name="ProjInfo" Text="{Binding ElementName=CurrentWindow,Path=Project.Info,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="9" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+            <Rectangle Height="7" Fill="Transparent" Grid.Row="10"/>
+            <Button Content="Открыть" x:Name="OkButton" Click="OkClick" Grid.Row="11"/>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

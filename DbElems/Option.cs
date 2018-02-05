@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
@@ -7,24 +8,62 @@ using System.Text;
 namespace DbElems
 {
     [DataContract]
-    public class Option
+    public enum OptionType
+    {
+        Vatt, //Ват
+        Dv, //Диаметр вала
+        H, //Высота
+        W, //Ширина
+        L, //Длинна
+    }
+
+
+    [DataContract]
+    public class Option : INotifyPropertyChanged
     {
         //Конструктор для EF
         public Option() { }
 
-        public Option(string Name, decimal Value)
+        public Option(OptionType Type, decimal Value)
         {
-            this.Name = Name;
+            this.Type = Type;
             this.Value = Value;
         }
 
         [Key]
         public int Id { get; set; }
 
+        OptionType type;
         [DataMember]
-        public string Name { get; private set; }
+        public OptionType Type
+        {
+            get
+            {
+                return type;
+            }
+            set
+            {
+                type = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Type"));
+            }
+        }
 
+
+        decimal v;
         [DataMember]
-        public decimal Value { get; private set; }
+        public decimal Value
+        {
+            get
+            {
+                return v;
+            }
+            set
+            {
+                v = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Value"));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="DbWindows.ManufacturerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DbWindows"
+             mc:Ignorable="d" 
+             x:Name="CurrentWindow"
+             d:DesignHeight="20" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Изменить данные" Click="EditMan"/>
+            </ContextMenu>
+        </Grid.ContextMenu>
+        <ComboBox Grid.Column="0" Grid.Row="1" IsEditable="True" TextBoxBase.TextChanged="ComboBoxTextChanged" DisplayMemberPath="Name" StaysOpenOnEdit="True" x:Name="MainComboBox" SelectedItem="{Binding Path=Current, ElementName=CurrentWindow, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+        </ComboBox>
+        <Button Width="20" Grid.Column="1" Grid.Row="1" Content="+" Click="AddManClick"/>
+    </Grid>
+</UserControl>

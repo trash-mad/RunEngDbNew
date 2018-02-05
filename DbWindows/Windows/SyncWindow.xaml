@@ -1,0 +1,53 @@
+﻿<Window x:Class="DbWindows.SyncWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DbWindows"
+        mc:Ignorable="d"
+        Title="SyncWindow" Height="368" Width="361">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Height="40">
+            <Image Source="pack://application:,,,/DbWindows;component/Images/Icon.png"/>
+            <Label Content="Синхронизация" VerticalAlignment="Center" FontSize="20"/>
+        </StackPanel>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Column="1" Grid.Row="1" Padding="3" BorderThickness="2" CornerRadius="3" Background="White" BorderBrush="SkyBlue">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="С этим проектом" FontWeight="Bold" FontSize="18"/>
+                        <StackPanel Orientation="Vertical" Margin="5">
+                            <TextBlock Text="Одинаковые элементы"/>
+                            <RadioButton GroupName="Oldelems" Content="Не трогать" x:Name="DontTouchOldElems" IsChecked="True" />
+                            <RadioButton GroupName="Oldelems" Content="Заменить, если новее" x:Name="UpdateOldElems" />
+                            <RadioButton GroupName="Oldelems" Content="Заменить" x:Name="ReplaceOldElems" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="5">
+                            <TextBlock Text="Новые элементы"/>
+                            <RadioButton GroupName="Newelems" Content="Не копировать" x:Name="DontTouchNewElems" IsChecked="True" />
+                            <RadioButton GroupName="Newelems" Content="Cкопировать" x:Name="CopyNewElems" />
+                        </StackPanel>
+                        <Button Content="Начать" Margin="2"/>
+                        <Rectangle Height="5"/>
+                        <TextBlock Text="С другими проектами" FontWeight="Bold" FontSize="18"/>
+                        <Button Content="Создать файл синхронизации" Margin="2"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>

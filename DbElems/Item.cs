@@ -8,17 +8,18 @@ using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.ObjectModel;
 
 namespace DbElems
 {
     [DataContract]
-    public class Item : INotifyPropertyChanged
+    public class Item : INotifyPropertyChanged, IComparable
     {
 
         //Конструктор для EF
         public Item() { }
 
-        public Item(string Name, string Info, string Category, string Subcategory, Manufacturer Man, decimal Price=0, byte Delivery=0, byte Rate=0, Link[] links = null,Option[] options= null, byte[][] images=null, byte[] Logo = null)
+        public Item(string Name, string Info, string Category, string Subcategory, Manufacturer Man, decimal Price=0, byte Delivery=0, byte Rate=0, Link[] links = null,Option[] options= null, ItemImage[] images=null, byte[] Logo = null)
         {
             this.name = Name;
             this.logo = Logo;
@@ -40,14 +41,26 @@ namespace DbElems
                 this.options.Add(item);
             }
 
-            foreach(var item in images ?? Enumerable.Empty<byte[]>())
+            foreach(var item in images ?? Enumerable.Empty<ItemImage>())
             {
                 this.images.Add(item);
             }
         }
 
+        int id;
         [Key]
-        public int Id { get; set; }
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Id"));
+            }
+        }
 
         //Поля элемента базы данных
         string name;
@@ -100,6 +113,21 @@ namespace DbElems
             }
         }
 
+
+        DateTime creation = DateTime.Now;
+        [DataMember]
+        public DateTime Creation
+        {
+            get
+            {
+                return creation;
+            }
+            set
+            {
+                creation = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Creation"));
+            }
+        }
 
         Guid guid=Guid.NewGuid();
         [Index(IsUnique = true)]
@@ -187,7 +215,7 @@ namespace DbElems
             set
             {
                 man = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Manufacturer"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Man"));
             }
         }
 
@@ -236,9 +264,9 @@ namespace DbElems
             }
         }
 
-        List<byte[]> images=new List<byte[]>();
+        ObservableCollection<ItemImage> images=new ObservableCollection<ItemImage>();
         [DataMember]
-        public List<byte[]> Images
+        public ObservableCollection<ItemImage> Images
         {
             get
             {
@@ -251,9 +279,9 @@ namespace DbElems
             }
         }
 
-        List<Link> links=new List<Link>();
+        ObservableCollection<Link> links=new ObservableCollection<Link>();
         [DataMember]
-        public List<Link> Links
+        public ObservableCollection<Link> Links
         {
             get
             {
@@ -266,9 +294,9 @@ namespace DbElems
             }
         }
 
-        List<Option> options=new List<Option>();
+        ObservableCollection<Option> options=new ObservableCollection<Option>();
         [DataMember]
-        public List<Option> Options
+        public ObservableCollection<Option> Options
         {
             get
             {
@@ -303,6 +331,12 @@ namespace DbElems
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MD5"));
             }*/
 
+        }
+
+        public int CompareTo(object obj)
+        {
+            Item another = obj as Item;
+            return guid.CompareTo(another.guid);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
@@ -8,18 +9,10 @@ using System.Text;
 namespace DbElems
 {
     [DataContract]
-    public class Manufacturer
+    public class Manufacturer : INotifyPropertyChanged
     {
         //Конструктор для EF
         public Manufacturer() { }
-
-        public Manufacturer(string Name, string Info, byte Rate, byte[] Bitmap=null)
-        {
-            this.Name = Name;
-            this.Info = Info;
-            this.Rate = Rate;
-            this.Bitmap = Bitmap;
-        }
 
         [Key]
         public int Id { get; set; }
@@ -42,11 +35,56 @@ namespace DbElems
             }
         }
 
+
+        string name="Название";
         [DataMember]
-        public string Name { get; set; }
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value)) return;
+                name = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+            }
+        }
+
+        byte rate=1;
         [DataMember]
-        public byte Rate { get; set; }
+        public byte Rate
+        {
+            get
+            {
+                return rate;
+            }
+            set
+            {
+                if (!(value > 0 || value < 6)) return;
+                rate = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Rate"));
+            }
+        }
+
+        string info;
         [DataMember]
-        public string Info { get; set; }
+        public string Info
+        {
+            get
+            {
+                return info;
+            }
+            set
+            {
+                info = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Info"));
+            }
+        }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
+
 }

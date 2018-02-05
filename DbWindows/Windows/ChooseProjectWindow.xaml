@@ -1,0 +1,79 @@
+﻿<Window x:Class="DbWindows.ChooseProjectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DbWindows"
+        mc:Ignorable="d"
+        x:Name="CurrentWindow"
+        Title="ChooseProjectWindow" Height="354.415" Width="422.34">
+    <Window.Resources>
+        <Style TargetType="ListBox" x:Key="ListBoxEmptyStyle" BasedOn="{StaticResource {x:Type ListBox}}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Items.Count}" Value="0">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <TextBlock Text="Пусто"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <local:Base64ToImage x:Key="ImageConverter" />
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Image Source="pack://application:,,,/DbWindows;component/Images/Icon.png"/>
+            <Label Content="База данных РСИ" VerticalAlignment="Center" FontSize="20"/>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <TextBlock Text="Проекты" FontWeight="Bold"/>
+                    <ListBox SelectionChanged="ProjectSelected" Style="{StaticResource ListBoxEmptyStyle}" HorizontalAlignment="Stretch"  x:Name="ProjectList" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderBrush="Transparent" BorderThickness="0">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Удалить выбранный проект" Click="RemoveProject"/>
+                            </ContextMenu>
+                        </ListBox.ContextMenu>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Height="30">
+                                    <Image Height="30" Width="30" Source="{Binding IconBase64,Converter={StaticResource ImageConverter}}"/>
+                                    <Label Content="{Binding Name}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <StackPanel Orientation="Horizontal" Height="30" x:Name="CreateNewButton">
+                        <Image Height="30" Width="30" Source="pack://application:,,,/DbWindows;component/Images/Add.png"/>
+                        <Label Content="Новый" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+            <local:ProjectInfoControl x:Name="ProjectControl" NewProject="OpenProject" Grid.Column="1"/>
+        </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" Margin="5">
+            <TextBlock Text="Или вы можете открыть:  " VerticalAlignment="Center"/>
+            <Button Content="Управление копиями" Click="BackupManagerButton"/>
+        </StackPanel>
+    </Grid>
+</Window>
