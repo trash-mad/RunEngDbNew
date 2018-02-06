@@ -28,7 +28,7 @@
         <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
         <DataGrid x:Name="ItemGrid" AutoGenerateColumns="False" CanUserAddRows="True" Grid.Row="2">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Код" Binding="{Binding Path=Id,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" MinWidth="50"/>
+                <DataGridTextColumn Header="Код" Binding="{Binding Path=Id,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" MinWidth="50"/>
                 <DataGridTemplateColumn Header="Логотип" MinWidth="50">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -39,7 +39,7 @@
                 <DataGridTextColumn Header="Наименование" Binding="{Binding Path=Name,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" MinWidth="50"/>
                 <DataGridTextColumn Header="Комментарий" Binding="{Binding Path=Info,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" MinWidth="50" MaxWidth="175"/>
                 <DataGridTextColumn Header="Категория" Binding="{Binding Path=Category,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" MinWidth="50"/>
-                <DataGridTextColumn Header="Подкатегория" Binding="{Binding Path=Subcategory,Mode=TwoWay}" MinWidth="50"/>
+                <DataGridTextColumn Header="Подкатегория" Binding="{Binding Path=Subcategory,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" MinWidth="50"/>
 
                 <DataGridTemplateColumn Header="Производитель" MinWidth="50">
                     <DataGridTemplateColumn.CellTemplate>
@@ -49,9 +49,9 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price,Mode=TwoWay}" MinWidth="50"/>
-                <DataGridTextColumn Header="Доставка" Binding="{Binding Path=Delivery,Mode=TwoWay}" MinWidth="50"/>
-                <DataGridTextColumn Header="Оценка" Binding="{Binding Path=Rate,Mode=TwoWay}" MinWidth="50"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" MinWidth="50"/>
+                <DataGridTextColumn Header="Доставка" Binding="{Binding Path=Delivery,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" MinWidth="50"/>
+                <DataGridTextColumn Header="Оценка" Binding="{Binding Path=Rate,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" MinWidth="50"/>
 
                 <DataGridTemplateColumn Header="Изображения" MinWidth="50">
                     <DataGridTemplateColumn.CellTemplate>

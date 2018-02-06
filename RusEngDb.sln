@@ -5,37 +5,18 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DbElems", "DbElems\DbElems.shproj", "{A2E2B96F-B610-4A01-8F30-2ECAC31ACEE3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbServer", "DbServer\DbServer.csproj", "{4C4204E7-F1B5-41D4-8C84-EAB5B483C616}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbServerManagementStudio", "DbServerManagementStudio\DbServerManagementStudio.csproj", "{B7685D5F-3770-44E6-BFEA-18DD25B5E0C6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonSerTest", "JsonSerTest\JsonSerTest.csproj", "{7C87495A-3E83-4E0B-9FE8-03A771E45D9F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbWindows", "DbWindows\DbWindows.csproj", "{9E973579-3B34-4CB7-B68B-9E0F7F803B5F}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		DbElems\DbElems.projitems*{9e973579-3b34-4cb7-b68b-9e0f7f803b5f}*SharedItemsImports = 4
 		DbElems\DbElems.projitems*{a2e2b96f-b610-4a01-8f30-2ecac31acee3}*SharedItemsImports = 13
-		DbElems\DbElems.projitems*{b7685d5f-3770-44e6-bfea-18dd25b5e0c6}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4C4204E7-F1B5-41D4-8C84-EAB5B483C616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C4204E7-F1B5-41D4-8C84-EAB5B483C616}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C4204E7-F1B5-41D4-8C84-EAB5B483C616}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C4204E7-F1B5-41D4-8C84-EAB5B483C616}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B7685D5F-3770-44E6-BFEA-18DD25B5E0C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7685D5F-3770-44E6-BFEA-18DD25B5E0C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7685D5F-3770-44E6-BFEA-18DD25B5E0C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7685D5F-3770-44E6-BFEA-18DD25B5E0C6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7C87495A-3E83-4E0B-9FE8-03A771E45D9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C87495A-3E83-4E0B-9FE8-03A771E45D9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C87495A-3E83-4E0B-9FE8-03A771E45D9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C87495A-3E83-4E0B-9FE8-03A771E45D9F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9E973579-3B34-4CB7-B68B-9E0F7F803B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9E973579-3B34-4CB7-B68B-9E0F7F803B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E973579-3B34-4CB7-B68B-9E0F7F803B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
