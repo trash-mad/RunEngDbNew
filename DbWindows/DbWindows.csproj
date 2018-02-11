@@ -81,6 +81,9 @@
     <Compile Include="Controls\ImagesControl.xaml.cs">
       <DependentUpon>ImagesControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CategoryControl.xaml.cs">
+      <DependentUpon>CategoryControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\InfoWindows\ImagesWindow.xaml.cs">
       <DependentUpon>ImagesWindow.xaml</DependentUpon>
     </Compile>
@@ -107,6 +110,9 @@
     </Compile>
     <Compile Include="Controls\SlideMenuItemControl.xaml.cs">
       <DependentUpon>SlideMenuItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SubcategoryControl.xaml.cs">
+      <DependentUpon>SubcategoryControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Convert\Base64ToImage.cs" />
     <Compile Include="DataModel\DatabaseContext.cs" />
@@ -165,6 +171,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\CategoryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\InfoWindows\ImagesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -204,6 +214,10 @@
     <Page Include="Controls\InfoWindows\ManufacturerWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SubcategoryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AsyncExecute.xaml">
       <Generator>MSBuild:Compile</Generator>

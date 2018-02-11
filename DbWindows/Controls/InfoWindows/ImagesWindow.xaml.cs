@@ -32,19 +32,7 @@ namespace DbWindows
         {
             InitializeComponent();
 
-            //TODO
-            var items = from p in App.DataBase.Projects select p.Items;
-            
-            foreach(var col in items)
-            {
-                foreach(var item in col)
-                {
-                    if (item.Id == id) CurrentItem = item;
-                }
-            }
-            
-            if (CurrentItem == null) throw new Exception("Не удалось найти элемент!");
-
+            CurrentItem = App.DataBase.Set<Item>().Find(id);//App.DataBase.Items.Find(id);
             App.DataBase.Entry(CurrentItem).Collection(x => x.Images).Load();
 
             foreach (var image in CurrentItem.Images)

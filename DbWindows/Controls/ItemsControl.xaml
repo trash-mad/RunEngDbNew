@@ -38,9 +38,21 @@
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Наименование" Binding="{Binding Path=Name,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" MinWidth="50"/>
                 <DataGridTextColumn Header="Комментарий" Binding="{Binding Path=Info,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" MinWidth="50" MaxWidth="175"/>
-                <DataGridTextColumn Header="Категория" Binding="{Binding Path=Category,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" MinWidth="50"/>
-                <DataGridTextColumn Header="Подкатегория" Binding="{Binding Path=Subcategory,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" MinWidth="50"/>
-
+                <DataGridTemplateColumn Header="Категория" MinWidth="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <local:CategoryControl Category="{Binding Path=Category,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Подкатегория" MinWidth="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <local:SubcategoryControl Category="{Binding Path=Category,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Subcategory="{Binding Path=Subcategory,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
                 <DataGridTemplateColumn Header="Производитель" MinWidth="50">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

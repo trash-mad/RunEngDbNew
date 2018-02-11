@@ -9,6 +9,7 @@
     <Import_RootNamespace>DbElems</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DefaultCategory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Item.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ItemImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Link.cs" />

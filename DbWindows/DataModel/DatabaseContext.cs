@@ -33,8 +33,9 @@ namespace DbWindows.DataModel
             }
         }
 
+        //Для хранения данных
         public DbSet<Project> Projects { get; set; }
         public DbSet<Manufacturer> Manufacturers { get; set; }
-        public DbSet<Option> Options { get; set; }
+        //public DbSet<Option> Options { get; set; }
     }
 }
