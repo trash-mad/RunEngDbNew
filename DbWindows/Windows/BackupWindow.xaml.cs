@@ -88,9 +88,21 @@ namespace DbWindows
                     {
                         JsonSerializer serializer = new JsonSerializer();
                         List<Project> tmp = (List<Project>)serializer.Deserialize(reader, typeof(List<Project>));
-                        App.DataBase.Database.ExecuteSqlCommand("DELETE FROM dbo.Items");
-                        App.DataBase.Database.ExecuteSqlCommand("DELETE FROM dbo.Projects");
-                        foreach(var item in tmp)
+
+                        var projects = from p in App.DataBase.Projects select p;
+                        App.DataBase.Projects.RemoveRange(projects);
+
+                        var items = from i in App.DataBase.Set<Item>() select i;
+                        App.DataBase.Set<Item>().RemoveRange(items);
+
+                        var mans = from m in App.DataBase.Set<Manufacturer>() select m;
+                        App.DataBase.Set<Manufacturer>().RemoveRange(mans);
+
+                        await App.TrySaveChanges();
+
+                        //App.DataBase.Database.ExecuteSqlCommand("DELETE FROM dbo.Items");
+                        //App.DataBase.Database.ExecuteSqlCommand("DELETE FROM dbo.Projects");
+                        foreach (var item in tmp)
                         {
                             App.DataBase.Projects.Add(item);
                         }

@@ -33,6 +33,26 @@ namespace DbWindows.DataModel
             }
         }
 
+        //Настройки отношений примитивов в таблице. Тут мы сделаем так, чтобы одну Item можно было привязать ко многим Projects
+        //В итоге не будет явной связи между Item и Project, что позволит хранить в бд только список Item, а что к чему относится знает только EF
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //К одному проекту много Item
+            modelBuilder.Entity<Project>().HasMany(p => p.Items).WithMany();
+
+            //К одному Item много ItemImage
+            modelBuilder.Entity<Item>().HasMany(i => i.Images).WithRequired().WillCascadeOnDelete(true);
+
+            //К одному Item много Link
+            modelBuilder.Entity<Item>().HasMany(i => i.Links).WithRequired().WillCascadeOnDelete(true);
+
+            //К одному Item много Option
+            modelBuilder.Entity<Item>().HasMany(i => i.Options).WithRequired().WillCascadeOnDelete(true);
+
+            //К одному Item много Manufacturer
+            modelBuilder.Entity<Item>().HasOptional(i => i.Man).WithMany().WillCascadeOnDelete(true);
+        }
+
         //Для хранения данных
         public DbSet<Project> Projects { get; set; }
         public DbSet<Manufacturer> Manufacturers { get; set; }

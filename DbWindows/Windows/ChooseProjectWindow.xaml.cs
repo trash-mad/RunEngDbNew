@@ -78,9 +78,7 @@ namespace DbWindows
             {
                 foreach(Project project in e.OldItems)
                 {
-                    //TODO
-                    App.DataBase.Database.ExecuteSqlCommand("DELETE FROM dbo.Items Where Project_Id="+project.Id);
-                    App.DataBase.Database.ExecuteSqlCommand("DELETE FROM dbo.Projects Where Id=" + project.Id);
+                    App.DataBase.Set<Project>().Remove(project);
                 }
                 needsave = true;
             }
