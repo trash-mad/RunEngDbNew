@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 using System.Text;
 
@@ -63,6 +64,9 @@ namespace DbElems
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Value"));
             }
         }
+
+        //Ключ Item, который будет подставлятся из базы данных
+        public int ItemId { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

@@ -52,6 +52,9 @@ namespace DbElems
             }
         }
 
+        //Ключ Item, который будет подставлятся из базы данных
+        public int ItemId { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

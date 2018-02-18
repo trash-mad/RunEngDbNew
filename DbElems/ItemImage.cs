@@ -22,5 +22,8 @@ namespace DbElems
 
         [DataMember]
         public byte[] Value { get; set; }
+
+        //Ключ Item, который будет подставлятся из базы данных
+        public int ItemId { get; set; }
     }
 }

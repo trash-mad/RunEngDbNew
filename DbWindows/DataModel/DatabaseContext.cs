@@ -44,10 +44,10 @@ namespace DbWindows.DataModel
             modelBuilder.Entity<Item>().HasMany(i => i.Images).WithRequired().WillCascadeOnDelete(true);
 
             //К одному Item много Link
-            modelBuilder.Entity<Item>().HasMany(i => i.Links).WithRequired().WillCascadeOnDelete(true);
+            modelBuilder.Entity<Item>().HasMany(i => i.Links).WithRequired().HasForeignKey(key => key.ItemId).WillCascadeOnDelete(true);
 
             //К одному Item много Option
-            modelBuilder.Entity<Item>().HasMany(i => i.Options).WithRequired().WillCascadeOnDelete(true);
+            modelBuilder.Entity<Item>().HasMany(i => i.Options).WithRequired().HasForeignKey(key => key.ItemId).WillCascadeOnDelete(true);
 
             //К одному Item много Manufacturer
             modelBuilder.Entity<Item>().HasOptional(i => i.Man).WithMany().WillCascadeOnDelete(true);
