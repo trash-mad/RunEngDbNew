@@ -11,11 +11,11 @@ namespace DbElems
     [DataContract]
     public enum OptionType
     {
-        Vatt, //Ват
-        Dv, //Диаметр вала
-        H, //Высота
-        W, //Ширина
-        L, //Длинна
+        [Description("Мощность (квт)")]
+        Kvt, //Ват
+        [Description("Вес (кг)")]
+        Kg, //Вес
+        d, //Диметр
     }
 
 
@@ -24,12 +24,6 @@ namespace DbElems
     {
         //Конструктор для EF
         public Option() { }
-
-        public Option(OptionType Type, decimal Value)
-        {
-            this.Type = Type;
-            this.Value = Value;
-        }
 
         [Key]
         public int Id { get; set; }
@@ -50,9 +44,9 @@ namespace DbElems
         }
 
 
-        decimal v;
+        double v;
         [DataMember]
-        public decimal Value
+        public double Value
         {
             get
             {

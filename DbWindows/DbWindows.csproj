@@ -119,6 +119,7 @@
     <Compile Include="Controls\InfoWindows\ManufacturerWindow.xaml.cs">
       <DependentUpon>ManufacturerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OptionHelper.cs" />
     <Compile Include="Windows\AsyncExecute.xaml.cs">
       <DependentUpon>AsyncExecute.xaml</DependentUpon>
     </Compile>

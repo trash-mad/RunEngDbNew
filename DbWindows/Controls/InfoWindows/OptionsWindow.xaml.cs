@@ -23,16 +23,11 @@ namespace DbWindows
 
 
 
-        public List<string> OptionsList
+        public IEnumerable<OptionType> OptionsList
         {
             get
             {
-                List<string> tmp = new List<string>();
-                foreach (var item in Enum.GetValues(typeof(OptionType)).Cast<OptionType>())
-                {
-                    tmp.Add(item.ToString());
-                }
-                return tmp;
+                return Enum.GetValues(typeof(OptionType)).Cast<OptionType>();
             }
         }
 

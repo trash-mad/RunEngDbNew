@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:DbWindows"
+        xmlns:db="clr-namespace:DbElems"
         x:Name="CurrentWindow"
         mc:Ignorable="d"
         Title="OptionsWindow" Height="300" Width="300">
@@ -14,7 +15,10 @@
             <DataGridTemplateColumn Header="Тип">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
-                        <ComboBox ItemsSource="{Binding Path=OptionsList,ElementName=CurrentWindow}" SelectedItem="{Binding Path=Type,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" Text="{Binding Path=Type,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                        <ComboBox DisplayMemberPath="DisplayName"
+                            ItemsSource="{local:OptionToDescription {x:Type db:OptionType}}"
+                            SelectedValue="{Binding Path=Type,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"
+                            SelectedValuePath="Value" />
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
